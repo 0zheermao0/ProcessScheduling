@@ -34,10 +34,10 @@ public class Test {
 
         //@Param [processName, time, priority, state, next]
         process1.setMyPCB(new Process.PCB("P1", 2, 1, "R", process2.getMyPCB()));
-        process2.setMyPCB(new Process.PCB("P2", 3, 5, "R", process2.getMyPCB()));
-        process3.setMyPCB(new Process.PCB("P3", 1, 3, "R", process2.getMyPCB()));
-        process4.setMyPCB(new Process.PCB("P4", 2, 4, "R", process2.getMyPCB()));
-        process5.setMyPCB(new Process.PCB("P5", 4, 2, "R", process2.getMyPCB()));
+        process2.setMyPCB(new Process.PCB("P2", 3, 5, "R", process3.getMyPCB()));
+        process3.setMyPCB(new Process.PCB("P3", 1, 3, "R", process4.getMyPCB()));
+        process4.setMyPCB(new Process.PCB("P4", 2, 4, "R", process5.getMyPCB()));
+        process5.setMyPCB(new Process.PCB("P5", 4, 2, "R", null));
 
         processQueue.add(process1);
         processQueue.add(process2);

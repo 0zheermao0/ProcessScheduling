@@ -20,30 +20,7 @@ public class Process implements Runnable{
 
     @Override
     public void run() {
-        if(this.getMyPCB().getState().equals("R")){
-            int waitingTime = this.getMyPCB().getWaitingTime();
-            waitingTime++;
-            this.getMyPCB().setWaitingTime(waitingTime);
 
-            this.getMyPCB().setState("W");
-        }else if(this.getMyPCB().getState().equals("E")){
-            return;
-        }
-        Integer runTime = this.myPCB.getRunTime();
-        Integer time = this.myPCB.getTime();
-        Integer cpuTime = this.myPCB.getCpuTime();
-        time--;
-        if(cpuTime == 0 || this.getMyPCB().getState().equals("W")){
-            cpuTime++;
-            this.myPCB.setCpuTime(cpuTime);
-        }
-
-        if(time == 0){
-            this.getMyPCB().setState("E");
-        }
-
-        this.myPCB.setRunTime(runTime);
-        this.myPCB.setTime(time);
     }
 
     public PCB getMyPCB() {
@@ -54,7 +31,7 @@ public class Process implements Runnable{
         this.myPCB = myPCB;
     }
 
-    static class PCB{
+    static class PCB {
         private String processName;
         private Integer time;
         private Integer runTime;
@@ -62,21 +39,14 @@ public class Process implements Runnable{
         private String state;
         private PCB next = null;
 
-
         private Integer arriveTime;
-        private Integer finishTime = -1;
-        private Integer waitingTime = 0;
+        private Integer finishTime = 0;
+        private Integer waitingTime = -1;
 
-        public PCB(String processName, Integer time, Integer runTime, Integer cpuTime, String state, PCB next, Integer arriveTime, Integer finishTime, Integer waitingTime) {
+        public PCB(String processName, Integer time, String state) {
             this.processName = processName;
             this.time = time;
-            this.runTime = runTime;
-            this.cpuTime = cpuTime;
             this.state = state;
-            this.next = next;
-            this.arriveTime = arriveTime;
-            this.finishTime = finishTime;
-            this.waitingTime = waitingTime;
         }
 
         public PCB() {
@@ -98,6 +68,22 @@ public class Process implements Runnable{
             this.time = time;
         }
 
+        public Integer getRunTime() {
+            return runTime;
+        }
+
+        public void setRunTime(Integer runTime) {
+            this.runTime = runTime;
+        }
+
+        public Integer getCpuTime() {
+            return cpuTime;
+        }
+
+        public void setCpuTime(Integer cpuTime) {
+            this.cpuTime = cpuTime;
+        }
+
         public String getState() {
             return state;
         }
@@ -112,14 +98,6 @@ public class Process implements Runnable{
 
         public void setNext(PCB next) {
             this.next = next;
-        }
-
-        public Integer getCpuTime() {
-            return cpuTime;
-        }
-
-        public void setCpuTime(Integer cpuTime) {
-            this.cpuTime = cpuTime;
         }
 
         public Integer getArriveTime() {
@@ -145,17 +123,8 @@ public class Process implements Runnable{
         public void setWaitingTime(Integer waitingTime) {
             this.waitingTime = waitingTime;
         }
-
-        public Integer getRunTime() {
-            return runTime;
-        }
-
-        public void setRunTime(Integer runTime) {
-            this.runTime = runTime;
-        }
     }
-
-    @Override
+        @Override
     public String toString() {
         return this.getMyPCB().getProcessName();
     }
