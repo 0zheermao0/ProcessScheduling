@@ -19,17 +19,28 @@ public class Process implements Runnable{
     @Override
     public void run() {
         if(this.getMyPCB().getState().equals("R")){
+            int waitingTime = this.getMyPCB().getWaitingTime();
+            waitingTime++;
+            this.getMyPCB().setWaitingTime(waitingTime);
+
             this.getMyPCB().setState("W");
         }else if(this.getMyPCB().getState().equals("E")){
             return;
         }
         Integer priority = this.myPCB.getPriority();
         Integer time = this.myPCB.getTime();
+        Integer cpuTime = this.myPCB.getCpuTime();
         priority--;
         time--;
+        if(cpuTime == 0 || this.getMyPCB().getState().equals("W")){
+            cpuTime++;
+            this.myPCB.setCpuTime(cpuTime);
+        }
+
         if(time == 0){
             this.getMyPCB().setState("E");
         }
+
         this.myPCB.setPriority(priority);
         this.myPCB.setTime(time);
     }
@@ -46,8 +57,12 @@ public class Process implements Runnable{
         private String processName;
         private Integer time;
         private Integer priority;
+        private Integer cpuTime = 0;
         private String state;
         private PCB next = null;
+        private Integer arriveTime;
+        private Integer finishTime = -1;
+        private Integer waitingTime = 0;
 
         /*
          * @Description //TODO 
@@ -59,6 +74,15 @@ public class Process implements Runnable{
             this.processName = processName;
             this.time = time;
             this.priority = priority;
+            this.state = state;
+            this.next = next;
+        }
+
+        public PCB(String processName, Integer time, Integer priority, Integer cpuTime, String state, PCB next) {
+            this.processName = processName;
+            this.time = time;
+            this.priority = priority;
+            this.cpuTime = cpuTime;
             this.state = state;
             this.next = next;
         }
@@ -104,6 +128,38 @@ public class Process implements Runnable{
 
         public void setNext(PCB next) {
             this.next = next;
+        }
+
+        public Integer getCpuTime() {
+            return cpuTime;
+        }
+
+        public void setCpuTime(Integer cpuTime) {
+            this.cpuTime = cpuTime;
+        }
+
+        public Integer getArriveTime() {
+            return arriveTime;
+        }
+
+        public void setArriveTime(Integer arriveTime) {
+            this.arriveTime = arriveTime;
+        }
+
+        public Integer getFinishTime() {
+            return finishTime;
+        }
+
+        public void setFinishTime(Integer finishTime) {
+            this.finishTime = finishTime;
+        }
+
+        public Integer getWaitingTime() {
+            return waitingTime;
+        }
+
+        public void setWaitingTime(Integer waitingTime) {
+            this.waitingTime = waitingTime;
         }
     }
 
