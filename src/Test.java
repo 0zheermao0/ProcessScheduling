@@ -1,6 +1,6 @@
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import sun.plugin2.gluegen.runtime.CPU;
+
+import java.util.*;
 
 /**
  * @Classname Test
@@ -11,10 +11,13 @@ import java.util.Queue;
  **/
 public class Test {
     public static void main(String[] args) {
+        int CPU_TIME = 0;
+        ArrayList<Process> list = new ArrayList<>();
+
         Comparator<Process> comparator = new Comparator<Process>() {
             @Override
             public int compare(Process o1, Process o2) {
-                return ((o1.getMyPCB().getPriority())-(o2.getMyPCB().getPriority()));
+                return ((o1.getMyPCB().getPriority()) - (o2.getMyPCB().getPriority()));
             }
         };
 
@@ -38,9 +41,45 @@ public class Test {
         processQueue.add(process4);
         processQueue.add(process5);
 
-        while (!processQueue.isEmpty()){
+        list.add(process1);
+        list.add(process2);
+        list.add(process3);
+        list.add(process4);
+        list.add(process5);
+
+        while (!processQueue.isEmpty()) {
             Process p = processQueue.poll();
-            System.out.println(p);
+            assert p != null;
+            p.run();
+            if (p.getMyPCB().getTime() != 0) {
+                processQueue.add(p);
+            }
+            Test.print(list, CPU_TIME);
+            CPU_TIME++;
+        }
+    }
+
+    public static void print(List<Process> list, int CPU_TIME) {
+        System.out.println("CPUTIME: " + CPU_TIME);
+        System.out.println("NAME    " + "CPUTIME    " + "NEEDTIME    " + "PRIORITY    " + "STATE    ");
+
+        for (Process process : list) {
+            String state = "";
+            switch (process.getMyPCB().getState()) {
+                case "R":
+                    state = "ready";
+                    break;
+                case "E":
+                    state = "finish";
+                    break;
+                case "W":
+                    state = "working";
+                    break;
+                default:
+                    break;
+            }
+            System.out.println(process.getMyPCB().getProcessName() + "         " + CPU_TIME + "        " + process.getMyPCB().getTime() + "        " +
+                    process.getMyPCB().getPriority() + "        " + state);
         }
     }
 }
