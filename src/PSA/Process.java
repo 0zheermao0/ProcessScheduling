@@ -7,7 +7,7 @@ package PSA;
  * @Date 2021/6/9 13:57
  * @Version 1.0
  **/
-public class Process implements Runnable{
+public class Process implements Runnable, Comparable<Process>{
 
     private PCB myPCB;
 
@@ -21,10 +21,6 @@ public class Process implements Runnable{
     @Override
     public void run() {
         if(this.getMyPCB().getState().equals("R")){
-            int waitingTime = this.getMyPCB().getWaitingTime();
-            waitingTime++;
-            this.getMyPCB().setWaitingTime(waitingTime);
-
             this.getMyPCB().setState("W");
         }else if(this.getMyPCB().getState().equals("E")){
             return;
@@ -55,6 +51,11 @@ public class Process implements Runnable{
         this.myPCB = myPCB;
     }
 
+    @Override
+    public int compareTo(Process o) {
+        return ((o.getMyPCB().getPriority()) - (this.getMyPCB().getPriority()));
+    }
+
     static class PCB{
         private String processName;
         private Integer time;
@@ -63,8 +64,8 @@ public class Process implements Runnable{
         private String state;
         private PCB next = null;
         private Integer arriveTime;
-        private Integer finishTime = -1;
-        private Integer waitingTime = 0;
+        private Integer finishTime = 0;
+        private Integer waitingTime = -1;
 
         /*
          * @Description //TODO 
@@ -169,4 +170,5 @@ public class Process implements Runnable{
     public String toString() {
         return this.getMyPCB().getProcessName();
     }
+
 }

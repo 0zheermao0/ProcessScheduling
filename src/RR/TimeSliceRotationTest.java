@@ -11,7 +11,7 @@
 // * @Date 2021/6/9 17:16
 // * @Version 1.0
 // **/
-//public class TimeSliceRotation {
+//public class TimeSliceRotationTest {
 //    private static int finishTime = 0;
 //
 //    public static void main(String[] args) {
@@ -20,11 +20,11 @@
 //        Scanner s = new Scanner(System.in);
 //        int q = s.nextInt(); // 时间片段RR
 //
-//        Process A = new Process(0,4);
-//        Process B = new Process(1,3);
-//        Process C = new Process(2,4);
-//        Process D = new Process(3,2);
-//        Process E = new Process(4,4);
+//        Process process1 = new Process();
+//        Process process2 = new Process();
+//        Process process3 = new Process();
+//        Process process4 = new Process();
+//        Process process5 = new Process();
 //
 //        //传到真正的服务时间
 //        A.setRealServerTime(A.getServerTime());

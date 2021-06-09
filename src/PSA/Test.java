@@ -17,7 +17,11 @@ public class Test {
         Comparator<Process> comparator = new Comparator<Process>() {
             @Override
             public int compare(Process o1, Process o2) {
-                return ((o2.getMyPCB().getPriority()) - (o1.getMyPCB().getPriority()));
+                int result = (o2.getMyPCB().getPriority()) - (o1.getMyPCB().getPriority());
+                if (result == 0) {
+                    result = (o2.getMyPCB().getArriveTime() - o1.getMyPCB().getArriveTime());
+                }
+                return result;
             }
         };
 
@@ -48,18 +52,23 @@ public class Test {
         list.add(process5);
 
         System.out.println("INPUT NAME,NEEDTIME AND PRIORITY");
-        for(int i=0;i<5;i++){
-            System.out.println(list.get(i).getMyPCB().getProcessName() +"    "+
-                    list.get(i).getMyPCB().getTime()+"    "+list.get(i).getMyPCB().getPriority());
+        for (int i = 0; i < 5; i++) {
+            System.out.println(list.get(i).getMyPCB().getProcessName() + "    " +
+                    list.get(i).getMyPCB().getTime() + "    " + list.get(i).getMyPCB().getPriority());
         }
 
         Test.print(list, CPU_TIME);
         CPU_TIME++;
 
         while (!processQueue.isEmpty()) {
+            int waitingTime = 0;
+
             Process p = processQueue.poll();
             assert p != null;
             p.run();
+            if (p.getMyPCB().getState().equals("E")) {
+                p.getMyPCB().setFinishTime(CPU_TIME);
+            }
             Test.print(list, CPU_TIME);
             if (p.getMyPCB().getTime() != 0) {
                 //如果还需要运行，先设为R，然后重排队
@@ -69,7 +78,7 @@ public class Test {
             CPU_TIME++;
         }
 
-        Test.printResult(list, (CPU_TIME-1));
+        Test.printResult(list, (CPU_TIME - 1));
     }
 
     public static void print(List<Process> list, int CPU_TIME) {
@@ -92,22 +101,30 @@ public class Test {
                 default:
                     break;
             }
-            if(cpuTime != 0 && process.getMyPCB().getState().equals("R")){
+            if (cpuTime != 0 && process.getMyPCB().getState().equals("R")) {
                 cpuTime++;
                 process.getMyPCB().setCpuTime(cpuTime);
-            }else if(cpuTime == 0){
+            } else if (cpuTime == 0) {
                 process.getMyPCB().setArriveTime(CPU_TIME);
             }
+
+            if(process.getMyPCB().getState().equals("R")){
+                int waitingTime = process.getMyPCB().getWaitingTime();
+                waitingTime++;
+                process.getMyPCB().setWaitingTime(waitingTime);
+            }
+
             System.out.println(process.getMyPCB().getProcessName() + "         " + process.getMyPCB().getCpuTime() + "        " + process.getMyPCB().getTime() + "        " +
                     process.getMyPCB().getPriority() + "        " + state);
         }
     }
 
-    public static void printResult(List<Process> list, int CPU_TIME){
+    public static void printResult(List<Process> list, int CPU_TIME) {
         System.out.println("NAME    RoundTime    WaitingTime");
-        for(int i=0;i<5;i++){
-            System.out.println(list.get(i).getMyPCB().getProcessName() +"         "+
-                    (CPU_TIME-list.get(i).getMyPCB().getArriveTime()) +"            "+ list.get(i).getMyPCB().getWaitingTime());
+        for (int i = 0; i < 5; i++) {
+//            System.out.println(list.get(i).getMyPCB().getFinishTime());
+            System.out.println(list.get(i).getMyPCB().getProcessName() + "         " +
+                    list.get(i).getMyPCB().getFinishTime() + "            " + list.get(i).getMyPCB().getWaitingTime());
         }
     }
 }
