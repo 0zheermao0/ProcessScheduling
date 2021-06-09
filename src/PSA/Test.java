@@ -1,9 +1,9 @@
-import sun.plugin2.gluegen.runtime.CPU;
+package PSA;
 
 import java.util.*;
 
 /**
- * @Classname Test
+ * @Classname PSA.Test
  * @Description TODO
  * @Author Joey
  * @Date 2021/6/9 14:04
