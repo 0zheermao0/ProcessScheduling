@@ -31,17 +31,17 @@ public class Process implements Runnable{
         this.myPCB = myPCB;
     }
 
-    static class PCB {
+    static class PCB implements Runnable{
         private String processName;
         private Integer time;
-        private Integer runTime;
+        private Integer runTime = 0;
         private Integer cpuTime = 0;
         private String state;
         private PCB next = null;
 
         private Integer arriveTime;
         private Integer finishTime = 0;
-        private Integer waitingTime = -1;
+        private Integer waitingTime = 0;
 
         public PCB(String processName, Integer time, String state) {
             this.processName = processName;
@@ -122,6 +122,28 @@ public class Process implements Runnable{
 
         public void setWaitingTime(Integer waitingTime) {
             this.waitingTime = waitingTime;
+        }
+
+        @Override
+        public String toString() {
+            return "PCB{" +
+                    "processName='" + processName + '\'' +
+                    '}';
+        }
+
+        @Override
+        public void run() {
+            if(this.getState().equals("R")){
+                this.setState("W");
+            }
+
+            int runTime = this.getRunTime();
+            runTime++;
+            this.setRunTime(runTime);
+
+            if(this.getTime().equals(this.getRunTime())){
+                this.setState("E");
+            }
         }
     }
         @Override
