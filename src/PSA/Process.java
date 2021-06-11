@@ -2,7 +2,7 @@ package PSA;
 
 /**
  * @Classname process
- * @Description TODO
+ * @Description TODO 进程类实现
  * @Author Joey
  * @Date 2021/6/9 13:57
  * @Version 1.0
@@ -18,6 +18,12 @@ public class Process implements Runnable, Comparable<Process>{
     public Process() {
     }
 
+    /*
+     * @Description //TODO 模拟运行一次进程，根据情况更改进程状态，增加CPU_TIME并递减优先数运行时间
+     * @Date 16:08 2021/6/11
+     * @Param []
+     * @return void
+     **/
     @Override
     public void run() {
         if(this.getMyPCB().getState().equals("R")){

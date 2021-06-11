@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  * @Classname CylicProcessQueue
- * @Description TODO
+ * @Description TODO 实现了一个简单的循环队列
  * @Author Joey
  * @Date 2021/6/9 22:07
  * @Version 1.0
@@ -29,6 +29,7 @@ public class CyclicProcessQueue<Process> implements ICyclicProcessQueue<Process>
         length++;
     }
 
+    //出队，但没完全出队
     @Override
     public RR.Process.PCB deQueue() {
         if (head == null) {
@@ -57,6 +58,7 @@ public class CyclicProcessQueue<Process> implements ICyclicProcessQueue<Process>
         return this.getSize() == 0;
     }
 
+    //出队，而且完全出队
     @Override
     public void remove(RR.Process.PCB process) {
         if(this.getSize() == 2){

@@ -14,6 +14,7 @@ public class Test {
         int CPU_TIME = 0;
         ArrayList<Process> list = new ArrayList<>();
 
+        //重写优先队列的比较器，进程优先级越大越优先，如果同优先级则FCFS
         Comparator<Process> comparator = new Comparator<Process>() {
             @Override
             public int compare(Process o1, Process o2) {
@@ -25,6 +26,7 @@ public class Test {
             }
         };
 
+        //新建五个进程
         PriorityQueue<Process> processQueue = new PriorityQueue<>(comparator);
         Process process1 = new Process();
         Process process2 = new Process();
@@ -33,18 +35,21 @@ public class Test {
         Process process5 = new Process();
 
         //@Param [processName, time, priority, state, next]
+        //设置五个进程的PCB
         process1.setMyPCB(new Process.PCB("P1", 2, 1, "R", process2.getMyPCB()));
         process2.setMyPCB(new Process.PCB("P2", 3, 5, "R", process3.getMyPCB()));
         process3.setMyPCB(new Process.PCB("P3", 1, 3, "R", process4.getMyPCB()));
         process4.setMyPCB(new Process.PCB("P4", 2, 4, "R", process5.getMyPCB()));
         process5.setMyPCB(new Process.PCB("P5", 4, 2, "R", null));
 
+        //进程进入优先队列
         processQueue.add(process1);
         processQueue.add(process2);
         processQueue.add(process3);
         processQueue.add(process4);
         processQueue.add(process5);
 
+        //入列表方便打印结果
         list.add(process1);
         list.add(process2);
         list.add(process3);
@@ -60,6 +65,7 @@ public class Test {
         Test.print(list, CPU_TIME);
         CPU_TIME++;
 
+        //优先队列不为空就持续运行进程
         while (!processQueue.isEmpty()) {
             int waitingTime = 0;
 
@@ -81,6 +87,12 @@ public class Test {
         Test.printResult(list, (CPU_TIME - 1));
     }
 
+    /*
+     * @Description //TODO 输出每一次运行的阶段结果
+     * @Date 16:08 2021/6/11
+     * @Param [list, CPU_TIME]
+     * @return void
+     **/
     public static void print(List<Process> list, int CPU_TIME) {
         System.out.println("CPUTIME: " + CPU_TIME);
         System.out.println("NAME    " + "CPUTIME    " + "NEEDTIME    " + "PRIORITY    " + "STATE    ");
@@ -119,6 +131,12 @@ public class Test {
         }
     }
 
+    /*
+     * @Description //TODO 打印最终结果
+     * @Date 16:09 2021/6/11
+     * @Param [list, CPU_TIME]
+     * @return void
+     **/
     public static void printResult(List<Process> list, int CPU_TIME) {
         System.out.println("NAME    RoundTime    WaitingTime");
         for (int i = 0; i < 5; i++) {

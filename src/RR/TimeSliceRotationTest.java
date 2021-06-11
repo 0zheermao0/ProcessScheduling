@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * @Classname RR.TimeSliceRotationTest
- * @Description TODO
+ * @Description TODO 时间轮转测试类
  * @Author Joey
  * @Date 2021/6/9 17:16
  * @Version 1.0
@@ -55,14 +55,32 @@ public class TimeSliceRotationTest {
         processQueue.enQueue(process4.getMyPCB());
         processQueue.enQueue(process5.getMyPCB());
 
+        /*
+         * @Description //TODO 打印初始信息
+         * @Date 16:13 2021/6/11
+         * @Param [args]
+         * @return void
+         **/
         System.out.println("INPUT NAME,NEEDTIME");
         for (int i = 0; i < 5; i++) {
             System.out.println(list.get(i).getMyPCB().getProcessName() + "    " +
                     list.get(i).getMyPCB().getTime());
         }
 
+        /*
+         * @Description //TODO 打印未运行的第一次阶段结果
+         * @Date 16:14 2021/6/11
+         * @Param [args]
+         * @return void
+         **/
         TimeSliceRotationTest.print(list, CPU_TIME);
 
+        /*
+         * @Description //TODO 若循环进程队列不为空，则运行进程并打印阶段结果
+         * @Date 16:15 2021/6/11
+         * @Param [args]
+         * @return void
+         **/
         while (!processQueue.isEmpty()) {
             CPU_TIME++;
             TimeSliceRotationTest.runProcess(processQueue, list, CPU_TIME);
@@ -72,6 +90,12 @@ public class TimeSliceRotationTest {
         TimeSliceRotationTest.printResult(list);
     }
 
+    /*
+     * @Description //TODO 进程运行函数，运行后根据实际情况，将W状态置为E或回到R
+     * @Date 16:15 2021/6/11
+     * @Param [processQueue, processes, CPU_TIME]
+     * @return void
+     **/
     public static void runProcess(CyclicProcessQueue<Process> processQueue, List<Process> processes, int CPU_TIME) {
         Process.PCB pcb = processQueue.deQueue();
 
@@ -89,6 +113,12 @@ public class TimeSliceRotationTest {
         }
     }
 
+    /*
+     * @Description //TODO 打印函数，打印阶段结果
+     * @Date 16:16 2021/6/11
+     * @Param [list, CPU_TIME]
+     * @return void
+     **/
     public static void print(List<Process> list, int CPU_TIME) {
         System.out.println("CPUTIME: " + CPU_TIME);
         System.out.println("NAME    " + "NEEDTIME    " + "RUNTIME    " + "STATE    ");
@@ -127,6 +157,12 @@ public class TimeSliceRotationTest {
         }
     }
 
+    /*
+     * @Description //TODO 最终结果打印函数
+     * @Date 16:16 2021/6/11
+     * @Param [list]
+     * @return void
+     **/
     public static void printResult(List<Process> list) {
         System.out.println("NAME    RoundTime    WaitingTime");
         for (int i = 0; i < 5; i++) {

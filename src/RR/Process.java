@@ -2,7 +2,7 @@ package RR;
 
 /**
  * @Classname process
- * @Description TODO
+ * @Description TODO 进程类实现
  * @Author Joey
  * @Date 2021/6/9 13:57
  * @Version 1.0
@@ -131,6 +131,12 @@ public class Process implements Runnable{
                     '}';
         }
 
+        /*
+         * @Description //TODO 模拟一次进程运行，更改状态和已运行时间
+         * @Date 16:13 2021/6/11
+         * @Param []
+         * @return void
+         **/
         @Override
         public void run() {
             if(this.getState().equals("R")){
