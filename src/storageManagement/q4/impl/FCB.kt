@@ -1,17 +1,19 @@
-package cn.yumetsuki.lab4.impl
+package storageManagement.q4.impl
 
-import cn.yumetsuki.lab4.AbstractFile
-import cn.yumetsuki.lab4.Permission
-import cn.yumetsuki.lab4.ext.no
-import cn.yumetsuki.lab4.model.Directory
-import cn.yumetsuki.lab4.model.File
+import storageManagement.q4.AbstractFile
+import storageManagement.q4.Permission
+import storageManagement.q4.ext.no
+import storageManagement.q4.model.Directory
+import storageManagement.q4.model.File
 import java.io.FileNotFoundException
 import java.util.*
 
+//文件控制块类
 class FCB(
     private val files: LinkedList<AbstractFile> = LinkedList()
 ){
 
+    //如果open的是一个文件且没被打开则打开
     fun open(path: String): Boolean{
         getFileFromPath(path)?.also {
             if (it is File && !it.isOpened){
@@ -22,6 +24,7 @@ class FCB(
         return false
     }
 
+    //如果close的是一个文件且已经被打开则close
     fun close(path: String): Boolean{
         getFileFromPath(path)?.also {
             if (it is File && it.isOpened){
@@ -32,6 +35,7 @@ class FCB(
         return false
     }
 
+    //若read的是一个文件且文件已打开则判断文件权限，若不限于W,WE,E则read
     fun read(path: String): String?{
         getFileFromPath(path)?.also {
             if (it is File && it.isOpened) {
@@ -49,6 +53,7 @@ class FCB(
         throw FileNotFoundException()
     }
 
+    //若write的是文件且已打开且权限正确则write
     fun write(path: String, data: String){
         getFileFromPath(path)?.also {
             if (it is File && it.isOpened) {
@@ -68,6 +73,7 @@ class FCB(
         throw FileNotFoundException()
     }
 
+    //设置文件权限
     fun setPermission(path: String, permission: Permission): Boolean{
         getFileFromPath(path)?.also {
             if (it is File){

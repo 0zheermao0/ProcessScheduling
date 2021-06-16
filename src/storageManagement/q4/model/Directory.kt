@@ -1,10 +1,10 @@
-package cn.yumetsuki.lab4.model
+package storageManagement.q4.model
 
-import cn.yumetsuki.lab4.AbstractFile
-import cn.yumetsuki.lab4.Permission
-import cn.yumetsuki.lab4.impl.FCB
+import storageManagement.q4.AbstractFile
+import storageManagement.q4.Permission
+import storageManagement.q4.impl.FCB
 
-
+//文件夹系统
 open class Directory(
     path: String,
     val previous: Directory?

@@ -1,18 +1,19 @@
-package cn.yumetsuki.lab4.main
+package storageManagement.q4.main
 
-import cn.yumetsuki.lab4.model.Result
-import cn.yumetsuki.lab4.ext.no
-import cn.yumetsuki.lab4.ext.otherWise
-import cn.yumetsuki.lab4.impl.FileSystem
-import cn.yumetsuki.lab4.impl.fileSystem
-import cn.yumetsuki.lab4.impl.FCB
-import cn.yumetsuki.lab4.view.CommandPage
-import cn.yumetsuki.lab4.view.Context
-import cn.yumetsuki.lab4.view.ContextFlag
-import cn.yumetsuki.lab4.view.PopFlag
-import cn.yumetsuki.lab4.view.widget.CommandWidget
+import storageManagement.q4.model.Result
+import storageManagement.q4.ext.no
+import storageManagement.q4.ext.otherWise
+import storageManagement.q4.impl.FileSystem
+import storageManagement.q4.impl.fileSystem
+import storageManagement.q4.impl.FCB
+import storageManagement.q4.view.CommandPage
+import storageManagement.q4.view.Context
+import storageManagement.q4.view.ContextFlag
+import storageManagement.q4.view.PopFlag
+import storageManagement.q4.view.widget.CommandWidget
 import java.io.FileNotFoundException
 
+//文件操作指令
 class FileView(
     override val data: Pair<String, String>
 ): CommandPage<Pair<String, String>>(){

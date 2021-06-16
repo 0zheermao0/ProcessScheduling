@@ -1,6 +1,7 @@
-package cn.yumetsuki.lab4
+package storageManagement.q4
 
-import cn.yumetsuki.lab4.model.Directory
+import storageManagement.q4.model.Directory
+import storageManagement.q4.Permission
 
 interface SystemInterface {
 

@@ -15,6 +15,12 @@ public class Memory {
     private static final Integer DEFAULT_TABLE_SIZE = 4;
     private LinkedList<Page> pages = new LinkedList<>();
 
+    /*
+     * @Description //TODO 把页加载到内存中
+     * @Date 15:28 2021/6/16
+     * @Param [page]
+     * @return void
+     **/
     public void addPage(Page page){
         if(pages.size() < DEFAULT_TABLE_SIZE){
             page.setFlag(true);

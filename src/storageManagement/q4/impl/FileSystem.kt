@@ -1,10 +1,10 @@
-package cn.yumetsuki.lab4.impl
+package storageManagement.q4.impl
 
-import cn.yumetsuki.lab4.Permission
-import cn.yumetsuki.lab4.SystemInterface
-import cn.yumetsuki.lab4.model.Directory
-import cn.yumetsuki.lab4.model.MFD
-import cn.yumetsuki.lab4.model.UFD
+import storageManagement.q4.Permission
+import storageManagement.q4.SystemInterface
+import storageManagement.q4.model.Directory
+import storageManagement.q4.model.MFD
+import storageManagement.q4.model.UFD
 import java.io.FileNotFoundException
 
 class FileSystem: SystemInterface {

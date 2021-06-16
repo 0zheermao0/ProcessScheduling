@@ -1,16 +1,17 @@
-package cn.yumetsuki.lab4.main
+package storageManagement.q4.main
 
-import cn.yumetsuki.lab4.model.Result
-import cn.yumetsuki.lab4.ext.no
-import cn.yumetsuki.lab4.ext.otherWise
-import cn.yumetsuki.lab4.ext.yes
-import cn.yumetsuki.lab4.impl.FileSystem
-import cn.yumetsuki.lab4.impl.fileSystem
-import cn.yumetsuki.lab4.view.CommandPage
-import cn.yumetsuki.lab4.view.Context
-import cn.yumetsuki.lab4.view.ContextFlag
-import cn.yumetsuki.lab4.view.widget.CommandWidget
+import storageManagement.q4.model.Result
+import storageManagement.q4.ext.no
+import storageManagement.q4.ext.otherWise
+import storageManagement.q4.ext.yes
+import storageManagement.q4.impl.FileSystem
+import storageManagement.q4.impl.fileSystem
+import storageManagement.q4.view.CommandPage
+import storageManagement.q4.view.Context
+import storageManagement.q4.view.ContextFlag
+import storageManagement.q4.view.widget.CommandWidget
 
+//系统指令
 class SystemView: CommandPage<Unit>() {
 
     private val system: FileSystem = fileSystem

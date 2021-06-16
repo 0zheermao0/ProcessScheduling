@@ -1,8 +1,8 @@
-package cn.yumetsuki.lab4.view
+package storageManagement.q4.view
 
 abstract class AbstractContext<T>(
     override val data: T?
-): Context<T, ContextFlag>{
+): Context<T, ContextFlag> {
 
     protected abstract fun run()
 

@@ -1,7 +1,7 @@
-package cn.yumetsuki.lab4.ext
+package storageManagement.q4.ext
 
 
-inline fun <T> Boolean.yes(block:()->T): BooleanExt<T>{
+inline fun <T> Boolean.yes(block:()->T): BooleanExt<T> {
     return if (this) {
         WithData(block())
     } else {
@@ -9,7 +9,7 @@ inline fun <T> Boolean.yes(block:()->T): BooleanExt<T>{
     }
 }
 
-inline fun <T> Boolean.no(block: () -> T): BooleanExt<T>{
+inline fun <T> Boolean.no(block: () -> T): BooleanExt<T> {
     return if (!this) {
         WithData(block())
     } else {

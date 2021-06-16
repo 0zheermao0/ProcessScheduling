@@ -1,4 +1,4 @@
-package cn.yumetsuki.lab4
+package storageManagement.q4
 
 abstract class AbstractFile(override val path: String): FileInterface {
 

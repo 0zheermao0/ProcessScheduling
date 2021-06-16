@@ -1,9 +1,9 @@
-package cn.yumetsuki.lab4.view
+package storageManagement.q4.view
 
 import storageManagement.q4.main.application
-import cn.yumetsuki.lab4.view.widget.CommandWidget
-import cn.yumetsuki.lab4.view.widget.NewLineInput
-import cn.yumetsuki.lab4.view.widget.SingleLineInput
+import storageManagement.q4.view.widget.CommandWidget
+import storageManagement.q4.view.widget.NewLineInput
+import storageManagement.q4.view.widget.SingleLineInput
 
 
 abstract class CommandPage<T>: AbstractContext<T>(null) {
@@ -27,14 +27,14 @@ abstract class CommandPage<T>: AbstractContext<T>(null) {
     protected fun <R> singleLineInput(
         title: String,
         block: Context<T, ContextFlag>.(text: String?) -> R
-    ): SingleLineInput<T, R>{
+    ): SingleLineInput<T, R> {
         return SingleLineInput(this, title, block)
     }
 
     protected fun <R> newLineInput(
         title: String,
         block: Context<T, ContextFlag>.(text: String?) -> R
-    ): NewLineInput<T, R>{
+    ): NewLineInput<T, R> {
         return NewLineInput(this, title, block)
     }
 
