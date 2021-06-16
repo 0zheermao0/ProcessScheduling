@@ -1,4 +1,4 @@
-package StorageManagement;
+package storageManagement.NoSolution;
 
 import java.util.LinkedList;
 
@@ -17,12 +17,18 @@ public class Memory {
 
     public void addPage(Page page){
         if(pages.size() < DEFAULT_TABLE_SIZE){
+            page.setFlag(true);
             pages.add(page);
         }
     }
 
-    public Page findPage(Integer pageIndex){
-        return pages.get(pageIndex);
+    public Page findPage(Page page){
+        for(Page p : pages){
+            if(p.equals(page)){
+                return p;
+            }
+        }
+        return null;
     }
 
     public static Memory getMemory(){

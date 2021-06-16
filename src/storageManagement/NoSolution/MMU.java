@@ -1,4 +1,4 @@
-package StorageManagement;
+package storageManagement.NoSolution;
 
 /**
  * @Classname MMU
@@ -8,9 +8,9 @@ package StorageManagement;
  * @Version 1.0
  **/
 public class MMU {
-    public String translate(Instruction instruction){
+    public static String translate(Instruction instruction){
         Page page = PageTable.getPageTable().getPage(instruction.getPageIndex());
-        if(Memory.getMemory().findPage(page.getPageIndex()) != null){
+        if(Memory.getMemory().findPage(page) != null){
             return (page.getMemoryIndex()*Memory.BLOCK_LENGTH)+instruction.getUnitIndex();
         }
         return "*"+page.getPageIndex();
