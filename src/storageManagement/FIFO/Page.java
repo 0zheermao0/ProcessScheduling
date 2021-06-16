@@ -63,4 +63,11 @@ public class Page {
     public void setFlag(Boolean flag) {
         this.flag = flag;
     }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "pageIndex=" + pageIndex +
+                '}';
+    }
 }

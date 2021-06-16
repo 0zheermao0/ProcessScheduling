@@ -42,13 +42,14 @@ public class Test {
         PageTable.getPageTable().addPage(page5);
         PageTable.getPageTable().addPage(page6);
 
-        Memory.getMemory().addPage(page0);
-        Memory.getMemory().addPage(page1);
-        Memory.getMemory().addPage(page2);
-        Memory.getMemory().addPage(page3);
+//        Memory.getMemory().addPage(page0);
+//        Memory.getMemory().addPage(page1);
+//        Memory.getMemory().addPage(page2);
+//        Memory.getMemory().addPage(page3);
 
         for(Instruction ins:instructions){
-            System.out.println(MMU.translate(ins));
+//            int debug = ins.getPageIndex();
+            Memory.getMemory().addPage(PageTable.getPageTable().getPage(ins.getPageIndex()));
         }
     }
 }
