@@ -10,9 +10,9 @@ abstract class AbstractFile(override val path: String): FileInterface {
 
     val location: String = "233"
 
-    val size: Double = 2.0
+    var size: Double = 2.0
 
-    var permission: Permission = Permission.R
+    var permission: Permission = Permission.WRE
 
 }
 

@@ -63,6 +63,7 @@ class FCB(
                 {
                     throw FilePermissionException()
                 } else {
+                    it.size = data.length.toDouble()
                     it.data = data
                     return
                 }
