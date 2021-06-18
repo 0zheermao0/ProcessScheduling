@@ -102,7 +102,7 @@ class FCB(
     }
 
     fun del(name: String): Boolean{
-        return files.removeIf { it.name == name }
+        return files.removeIf { it.path == name }
     }
 
     fun getFileFromName(name: String): AbstractFile?{
